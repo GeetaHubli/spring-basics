@@ -41,11 +41,33 @@ public class LinearEquationControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("[{\"xCoordinate\":1, \"yCoordinate\":2},{\"xCoordinate\":3, \"yCoordinate\":1}]");
 
-        System.out.println("............................................................" + request);
-
         this.mvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.distance", is(closeTo(2.2, 0.1))));
+
+    }
+
+    @Test
+    public void shouldCalculateSlopeBetweenTwoPoints() throws Exception {
+        MockHttpServletRequestBuilder request = post("/linear/slope")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("[{\"xCoordinate\":1, \"yCoordinate\":2},{\"xCoordinate\":3, \"yCoordinate\":1}]");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.slope", is(closeTo(-0.5, 0.1))));
+
+    }
+
+    @Test
+    public void shouldCalculateYInterceptBetweenTwoPoints() throws Exception {
+        MockHttpServletRequestBuilder request = post("/linear/yIntercept")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("[{\"xCoordinate\":1, \"yCoordinate\":2},{\"xCoordinate\":3, \"yCoordinate\":1}]");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.yIntercept", is(closeTo(1.5, 0.1))));
 
     }
 
