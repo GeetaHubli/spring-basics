@@ -31,4 +31,10 @@ public class MathTest {
         int result = Math.factorial(4);
         assertEquals(24,result);
     }
+
+    @Test
+    public void shouldFibonacciAnInteger() throws Exception {
+        int result = Math.fibonacci(4);
+        assertEquals(3,result);
+    }
 }
