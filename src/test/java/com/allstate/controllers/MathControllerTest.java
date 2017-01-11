@@ -4,23 +4,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.Assert.*;
+
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)
-public class HomeControllerTest {
+@WebMvcTest(MathController.class)
+public class MathControllerTest {
 
-    @Autowired //dependency injection
-    private MockMvc mvc; //Uses subset of spring to make tests run faster, rather than using the whole spring setup
+    @Autowired
+    private MockMvc mvc;
 
     @Before
     public void setUp() throws Exception {
@@ -33,18 +33,9 @@ public class HomeControllerTest {
     }
 
     @Test
-    public void shouldReturnHelloMessageFromGET() throws Exception {
-        this.mvc.perform(get("/"))
+    public void shouldSquareAnInteger() throws Exception {
+        this.mvc.perform(get("/math/square/4"))
                 .andExpect(status().isOk()) //status will be of if it returns 200
-                .andExpect(jsonPath("$.message", is("Hello Spring!!")))
-                .andExpect(jsonPath("$.id", is(1)));
+                .andExpect(jsonPath("$.square", is(16)));
     }
-
-//    @Test
-//    public void shouldReturnHelloObjectFromGET() throws Exception {
-//        this.mvc.perform(get("/"))
-//                .andExpect(status().isOk()) //status will be of if it returns 200
-//                .andExpect(Body.is("{" + "message" + ":" + "Hello Spring!!" + "," + "id" + " :1}")
-//
-//    }
 }

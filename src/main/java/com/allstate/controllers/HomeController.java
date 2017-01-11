@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @RequestMapping(value="/", method= RequestMethod.GET) //Maps Http request to a function which takes route path and request method types
     public Hello home(){
-        Hello h = new Hello("Hello Spring!!");
+        Hello h = new Hello("Hello Spring!!", 1);
         return h;
     }
 }

@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Created by localadmin on 11/01/17.
  */
-public class HelloTest {
+public class MathTest {
     @Before
     public void setUp() throws Exception {
 
@@ -21,10 +21,8 @@ public class HelloTest {
     }
 
     @Test
-    public void shouldCreateNewInstanceOfHello() throws Exception {
-        Hello h = new Hello("Hello JUnit", 25);
-        assertEquals("Hello JUnit", h.getMessage());
-        assertEquals(25, h.getId());
+    public void shouldSquareAnInteger() throws Exception {
+        int result = Math.square(4);
+        assertEquals(16,result);
     }
-
 }
