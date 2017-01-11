@@ -38,4 +38,12 @@ public class MathControllerTest {
                 .andExpect(status().isOk()) //status will be of if it returns 200
                 .andExpect(jsonPath("$.square", is(16)));
     }
+
+    @Test
+    public void shouldFactorialAnInteger() throws Exception {
+        this.mvc.perform(get("/math/factorial/4"))
+                .andExpect(status().isOk()) //status will be of if it returns 200
+                .andExpect(jsonPath("$.factorial", is(24)))
+                .andExpect(jsonPath("$.original", is(4)));
+    }
 }

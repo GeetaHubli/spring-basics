@@ -25,4 +25,10 @@ public class MathTest {
         int result = Math.square(4);
         assertEquals(16,result);
     }
+
+    @Test
+    public void shouldFactorialAnInteger() throws Exception {
+        int result = Math.factorial(4);
+        assertEquals(24,result);
+    }
 }
